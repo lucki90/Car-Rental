@@ -5,8 +5,10 @@ import com.sda.luckyrent.model.Car;
 import com.sda.luckyrent.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,14 +20,33 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Car create (@RequestBody Car car){
+    public Car create(@RequestBody Car car) {
         return carService.create(car);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Car> getAll(){
+    public List<Car> getAll() {
         return carService.getAll();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Car getById(@PathVariable Long id) {
+        return carService.getById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        carService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Car update(@PathVariable Long id,
+                      @RequestBody @Valid Car car,
+                      BindingResult bindingResult) {
+        return carService.update(id, car, bindingResult);
+    }
 }

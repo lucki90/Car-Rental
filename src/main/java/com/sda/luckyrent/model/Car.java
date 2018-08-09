@@ -31,4 +31,19 @@ public class Car {
 
     @OneToOne(mappedBy = "car")
     private Reservation reservation;
+
+    public void updateFrom(Car car) {
+        if (car.getBrand() != null) {
+            this.brand = car.getBrand();
+        }
+        if (car.getModel() != null) {
+            this.model= car.getModel();
+        }
+        if (car.getCarClass() !=null){
+            this.carClass = car.getCarClass();
+        }
+        if (car.getCarSpecification() !=null){
+            this.carSpecification = car.getCarSpecification();
+        }
+    }
 }

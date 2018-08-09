@@ -1,5 +1,6 @@
 package com.sda.luckyrent.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,4 +35,9 @@ public class CarSpecification {
     @OneToMany(mappedBy = "carSpecification")
     private List<Car> cars;
 
+    //Dzięki tej addnotacji nie pojawia się rekurencja i stackOverFlow przy pobieraniu obiektu
+    @JsonIgnore
+    public List<Car> getCars() {
+        return cars;
+    }
 }
