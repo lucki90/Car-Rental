@@ -29,4 +29,20 @@ public class User {
 
     @OneToMany
     private List<Reservation> reservations;
+
+    public void updateForm(User user) {
+        if (user.getName() != null) {
+            this.name = user.getName();
+        }
+        if (user.getSurname() != null) {
+            this.surname= user.getSurname();
+        }
+        if (user.getPhoneNumber() !=null){
+            this.phoneNumber = user.getPhoneNumber();
+        }
+        if (user.getLoggedUser() !=null){
+            this.loggedUser= user.getLoggedUser();
+        }
+
+    }
 }
