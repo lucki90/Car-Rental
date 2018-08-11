@@ -32,12 +32,12 @@ public class CarSpecification {
     @Column(nullable = false)
     private Double engineCapacity;
 
-    @OneToMany(mappedBy = "carSpecification")
-    private List<Car> cars;
+//    @OneToMany(mappedBy = "carSpecification")
+//    private List<Car> cars;
 
     //Dzięki tej addnotacji nie pojawia się rekurencja i stackOverFlow przy pobieraniu obiektu
-    @JsonIgnore
-    public List<Car> getCars() {
-        return cars;
-    }
+//    @JsonIgnore
+//    public List<Car> getCars() {
+//        return cars;
+//    }
 }

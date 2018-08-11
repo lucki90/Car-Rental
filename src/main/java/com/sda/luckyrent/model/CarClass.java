@@ -21,7 +21,8 @@ public class CarClass {
     @Column(nullable = false)
     private String segmentDescription;
 
-    @OneToMany
+
+    @OneToMany(mappedBy = "carClass")
     private List<Car> cars;
 
 }

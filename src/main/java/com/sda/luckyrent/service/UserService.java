@@ -40,7 +40,16 @@ public class UserService {
 
     public User create(User user, BindingResult bindingResult) {
 
-        validateUser(user, null, bindingResult);
+//        validateUser(user, null, bindingResult);
+
+        if (userRepository.findByName(user.getName()) != null) {
+            bindingResult.addError(
+                    new FieldError("user", "field",
+                            String.format("User with username %s already exists", user.getName())));
+        }
+        if (bindingResult.hasErrors()) {
+            throw new BindingResultException(bindingResult);
+        }
         return userRepository.save(user);
     }
 
@@ -57,6 +66,16 @@ public class UserService {
             throw new NotFoundException(String.format("User with id %s does not exists", id));
         }
         User dbUser = savedUser.get();
+
+        if (!user.getName().equals(dbUser.getName())
+                && userRepository.findByName(user.getName()) != null) {
+            bindingResult.addError(
+                    new FieldError("user", "field",
+                            String.format("User with username %s already exists", user.getName())));
+        }
+        if (bindingResult.hasErrors()) {
+            throw new BindingResultException(bindingResult);
+        }
 
         validateUser(user, dbUser, bindingResult);
 

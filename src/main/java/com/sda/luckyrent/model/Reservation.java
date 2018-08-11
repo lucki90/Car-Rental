@@ -22,7 +22,9 @@ public class Reservation {
     @Column(name = "reserved_to", nullable = false)
     private LocalDateTime toDate;
 
-    @OneToOne
+    //  @ManyToOne
+//  @JoinColumn(name = "receipt_id")
+    @ManyToOne
     @JoinColumn(name = "id_car", nullable = false)
     private Car car;
 
