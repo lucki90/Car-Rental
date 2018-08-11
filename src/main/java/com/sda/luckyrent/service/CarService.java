@@ -44,12 +44,17 @@ public class CarService {
     public Car update(Long id, Car car, BindingResult bindingResult) {
 
         Optional<Car> savedCar = carRepository.findById(id);
-        if (!savedCar.isPresent()){
+        if (!savedCar.isPresent()) {
             throw new NotFoundException(String.format("Car with id %s does not exists", id));
         }
         Car dbCar = savedCar.get();
+        car.setId(id);
+        //Brak walidacji bo nie mamy takiego wymuszenia z bazy danych
 
-        validateCar(car, dbCar, bindingResult);
+        if (bindingResult.hasErrors()) {
+            throw new BindingResultException(bindingResult);
+        }
+//        validateCar(car, dbCar, bindingResult);
 
         dbCar.updateFrom(car);
         return carRepository.save(dbCar);

@@ -42,10 +42,10 @@ public class UserService {
 
 //        validateUser(user, null, bindingResult);
 
-        if (userRepository.findByName(user.getName()) != null) {
+        if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
             bindingResult.addError(
-                    new FieldError("user", "field",
-                            String.format("User with username %s already exists", user.getName())));
+                    new FieldError("user", "phoneNumber",
+                            String.format("User with this phone number %s already exists", user.getPhoneNumber())));
         }
         if (bindingResult.hasErrors()) {
             throw new BindingResultException(bindingResult);
@@ -54,7 +54,7 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        if (userRepository.existsById(id)) {
+        if (!userRepository.existsById(id)) {
             throw new NotFoundException(String.format("User with id %s does not exist", id));
         }
         userRepository.deleteById(id);
@@ -67,17 +67,16 @@ public class UserService {
         }
         User dbUser = savedUser.get();
 
-        if (!user.getName().equals(dbUser.getName())
-                && userRepository.findByName(user.getName()) != null) {
+//        validateUser(user, dbUser, bindingResult);
+        if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
             bindingResult.addError(
-                    new FieldError("user", "field",
-                            String.format("User with username %s already exists", user.getName())));
+                    new FieldError("user", "phoneNumber",
+                            String.format("User with this phone number %s does not exists", user.getPhoneNumber())));
         }
         if (bindingResult.hasErrors()) {
             throw new BindingResultException(bindingResult);
         }
 
-        validateUser(user, dbUser, bindingResult);
 
         dbUser.updateForm(user);
         return userRepository.save(dbUser);

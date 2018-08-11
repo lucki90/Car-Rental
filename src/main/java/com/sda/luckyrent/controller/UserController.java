@@ -35,11 +35,11 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @GetMapping("/{name}")
-    @ResponseStatus(HttpStatus.OK)
-    public User getById(@PathVariable String name){
-        return userService.getByName(name);
-    }
+//    @GetMapping("/{name}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public User getById(@PathVariable String name){
+//        return userService.getByName(name);
+//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -47,7 +47,7 @@ public class UserController {
         userService.delete(id);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User update(@PathVariable Long id,
                        @RequestBody @Valid User user,
