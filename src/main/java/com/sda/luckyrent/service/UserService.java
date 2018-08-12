@@ -71,7 +71,7 @@ public class UserService {
         if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
             bindingResult.addError(
                     new FieldError("user", "phoneNumber",
-                            String.format("User with this phone number %s does not exists", user.getPhoneNumber())));
+                            String.format("User with this phone number %s already exists", user.getPhoneNumber())));
         }
         if (bindingResult.hasErrors()) {
             throw new BindingResultException(bindingResult);
