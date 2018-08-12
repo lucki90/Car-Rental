@@ -20,6 +20,8 @@ public class Car {
     private String brand;
     @Column(name = "car_model", nullable = false)
     private String model;
+    @Column(nullable = false)
+    private Integer price;
 
     @ManyToOne
     @JoinColumn(name = "id_car_class")
@@ -38,6 +40,9 @@ public class Car {
         }
         if (car.getModel() != null) {
             this.model= car.getModel();
+        }
+        if (car.getPrice() !=null){
+            this.price= car.getPrice();
         }
         if (car.getCarClass() !=null){
             this.carClass = car.getCarClass();
