@@ -22,8 +22,6 @@ public class Reservation {
     @Column(name = "reserved_to", nullable = false)
     private LocalDateTime toDate;
 
-    //  @ManyToOne
-//  @JoinColumn(name = "receipt_id")
     @ManyToOne
     @JoinColumn(name = "id_car", nullable = false)
     private Car car;
@@ -31,5 +29,21 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
     private User user;
+
+    public void updateForm(Reservation reservation) {
+        if (reservation.getFromDate() != null) {
+            this.fromDate = reservation.getFromDate();
+        }
+        if (reservation.getToDate() != null){
+            this.toDate = reservation.getToDate();
+        }
+        if (reservation.getCar() != null){
+            this.car = reservation.getCar();
+        }
+        if (reservation.getUser() != null){
+            this.user = reservation.getUser();
+        }
+
+    }
 
 }

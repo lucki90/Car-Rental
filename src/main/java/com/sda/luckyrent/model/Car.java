@@ -31,9 +31,6 @@ public class Car {
     @JoinColumn(name = "id_car_specification")
     private CarSpecification carSpecification;
 
-    @OneToOne(mappedBy = "car")
-    private Reservation reservation;
-
     public void updateFrom(Car car) {
         if (car.getBrand() != null) {
             this.brand = car.getBrand();

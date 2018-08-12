@@ -24,11 +24,8 @@ public class User {
     @Column(nullable = false, unique = true)
     private Integer phoneNumber;
 
-    @OneToOne(mappedBy = "user")
-    private LoggedUser loggedUser;
-
-    @OneToMany
-    private List<Reservation> reservations;
+//    @OneToOne(mappedBy = "user")
+//    private LoggedUser loggedUser;
 
     public void updateForm(User user) {
         if (user.getName() != null) {
@@ -40,9 +37,9 @@ public class User {
         if (user.getPhoneNumber() !=null){
             this.phoneNumber = user.getPhoneNumber();
         }
-        if (user.getLoggedUser() !=null){
-            this.loggedUser= user.getLoggedUser();
-        }
+//        if (user.getLoggedUser() !=null){
+//            this.loggedUser= user.getLoggedUser();
+//        }
 
     }
 }

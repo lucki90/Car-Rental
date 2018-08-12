@@ -11,8 +11,6 @@ public class LuckyRentApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LuckyRentApplication.class, args);
-
-
     }
 
     @Bean

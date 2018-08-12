@@ -22,7 +22,7 @@ public class CarClass {
     private String segmentDescription;
 
 
-    @OneToMany(mappedBy = "carClass")
-    private List<Car> cars;
+//    @OneToMany(mappedBy = "carClass")
+//    private List<Car> cars;
 
 }
