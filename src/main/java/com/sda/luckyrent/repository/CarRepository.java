@@ -10,4 +10,5 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<Car,Long > {
 
     List<Car> findByBrandContaining(String brand);
+    List<Car> findByBrandContainingIgnoreCaseAndModelContainingIgnoreCaseAndPriceGreaterThanEqualAndPriceLessThanEqual(String brand, String model, Integer minPrice, Integer maxPrice);
 }

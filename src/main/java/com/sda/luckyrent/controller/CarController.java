@@ -24,10 +24,21 @@ public class CarController {
         return carService.create(car);
     }
 
+//    @GetMapping
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<Car> getAll() {
+//        return carService.getAll();
+//    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Car> getAll() {
-        return carService.getAll();
+    public List<Car> search(
+            @RequestParam(value = "brand", defaultValue = "") String brand,
+            @RequestParam(value = "model", defaultValue = "") String model,
+            @RequestParam(value = "minPrice", defaultValue = "0") Integer minPrice,
+            @RequestParam(value = "maxPrice", required = false) Integer maxPrice
+                            ){
+        return carService.search(brand,model,minPrice,maxPrice);
     }
 
     @GetMapping("/{id}")

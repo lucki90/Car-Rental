@@ -18,6 +18,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public User create(User user, BindingResult bindingResult) {
+        validateUser(user, bindingResult);
+        return userRepository.save(user);
+    }
+
     public User getById(Long id) {
         Optional<User> user = userRepository.findById(id);
         if (!user.isPresent()) {
@@ -26,31 +31,15 @@ public class UserService {
         return user.get();
     }
 
-    public User getByName(String name) {
-        User user = userRepository.findByName(name);
-        if (user == null) {
-            throw new NotFoundException(String.format("User with name %s does not exist", name));
-        }
-        return user;
-    }
-
     public List<User> getAll() {
         return userRepository.findAll();
     }
 
-    public User create(User user, BindingResult bindingResult) {
-
-//        validateUser(user, null, bindingResult);
-
-        if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
-            bindingResult.addError(
-                    new FieldError("user", "phoneNumber",
-                            String.format("User with this phone number %s already exists", user.getPhoneNumber())));
-        }
-        if (bindingResult.hasErrors()) {
-            throw new BindingResultException(bindingResult);
-        }
-        return userRepository.save(user);
+    public User update(Long id, User user, BindingResult bindingResult) {
+        User dbUser = getById(id);
+        validateUser(user, bindingResult);
+        dbUser.updateForm(user);
+        return userRepository.save(dbUser);
     }
 
     public void delete(Long id) {
@@ -60,14 +49,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User update(Long id, User user, BindingResult bindingResult) {
-        Optional<User> savedUser = userRepository.findById(id);
-        if (!savedUser.isPresent()){
-            throw new NotFoundException(String.format("User with id %s does not exists", id));
-        }
-        User dbUser = savedUser.get();
-
-//        validateUser(user, dbUser, bindingResult);
+    private void validateUser(User user, BindingResult bindingResult) {
         if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
             bindingResult.addError(
                     new FieldError("user", "phoneNumber",
@@ -76,23 +58,5 @@ public class UserService {
         if (bindingResult.hasErrors()) {
             throw new BindingResultException(bindingResult);
         }
-
-
-        dbUser.updateForm(user);
-        return userRepository.save(dbUser);
-
     }
-
-    private void validateUser(User user, User currentUser, BindingResult bindingResult) {
-        if (user.getName().equals(currentUser.getName())
-                && userRepository.findByName(user.getName()) != null) {
-            bindingResult.addError(
-                    new FieldError("user", "field",
-                            String.format("User with username %s already exists", user.getName())));
-        }
-        if (bindingResult.hasErrors()) {
-            throw new BindingResultException(bindingResult);
-        }
-    }
-
 }

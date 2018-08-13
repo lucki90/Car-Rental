@@ -22,10 +22,6 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public List<Car> getAll() {
-        return carRepository.findAll();
-    }
-
     public Car getById(Long id) {
         Optional<Car> car = carRepository.findById(id);
         if (!car.isPresent()) {
@@ -34,6 +30,25 @@ public class CarService {
         return car.get();
     }
 
+    public List<Car> search(String brand, String model, Integer minPrice, Integer maxPrice) {
+        if (maxPrice==null){
+            maxPrice=Integer.MAX_VALUE;
+        }
+        return carRepository
+                .findByBrandContainingIgnoreCaseAndModelContainingIgnoreCaseAndPriceGreaterThanEqualAndPriceLessThanEqual(
+                        brand,model,minPrice,maxPrice);
+    }
+
+    public Car update(Long id, Car car, BindingResult bindingResult) {
+
+        Car dbCar = getById(id);
+        car.setId(id);
+        validateCar(bindingResult);
+        dbCar.updateFrom(car);
+        return carRepository.save(dbCar);
+    }
+
+
     public void delete(Long id) {
         if (!carRepository.existsById(id)) {
             throw new NotFoundException(String.format("Car with id %s does not exists", id));
@@ -41,36 +56,9 @@ public class CarService {
         carRepository.deleteById(id);
     }
 
-    public Car update(Long id, Car car, BindingResult bindingResult) {
-
-        Optional<Car> savedCar = carRepository.findById(id);
-        if (!savedCar.isPresent()) {
-            throw new NotFoundException(String.format("Car with id %s does not exists", id));
-        }
-        Car dbCar = savedCar.get();
-        car.setId(id);
-        //Brak walidacji bo nie mamy takiego wymuszenia z bazy danych
-
-        if (bindingResult.hasErrors()) {
-            throw new BindingResultException(bindingResult);
-        }
-//        validateCar(car, dbCar, bindingResult);
-
-        dbCar.updateFrom(car);
-        return carRepository.save(dbCar);
-    }
-
-    private void validateCar(Car car, Car dbCar, BindingResult bindingResult) {
-        if (dbCar != null
-                && carRepository.existsById(car.getId())
-                && dbCar.equals(car)) {
-            FieldError error = new FieldError("car", "id",
-                    "Car already exist");
-            bindingResult.addError(error);
-        }
+    private void validateCar(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new BindingResultException(bindingResult);
         }
     }
-
 }
