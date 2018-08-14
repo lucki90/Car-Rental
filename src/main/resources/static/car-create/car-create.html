@@ -1,0 +1,20 @@
+<form ng-submit="vm.create()">
+    <div class="form-group">
+        <label for="car-brand">Car brand</label>
+        <input class="form-control" id="car-brand" ng-model="vm.car.brand" />
+        <p class="red">{{vm.errors.name}}</p>
+    </div>
+    <div class="form-group">
+        <label for="car-model">Car model</label>
+        <input class="form-control" id="car-model" ng-model="vm.car.model" />
+        <p class="red">{{vm.errors.name}}</p>
+    </div>
+    <div class="form-group">
+        <label for="car-price">Car Price</label>
+        <input class="form-control" id="car-price"
+               ng-model="vm.car.price" type="number" step="0.01"/>
+        <p class="red">{{vm.errors.price}}</p>
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+    <!--<input class="btn btn-primary" content="Create"/>-->
+</form>
