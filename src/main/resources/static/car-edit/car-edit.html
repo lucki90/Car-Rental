@@ -1,12 +1,17 @@
 <form ng-submit="vm.update()">
     <div class="form-group">
-        <label for="name">Car Name</label>
-        <input id="name" class="form-control" ng-model="vm.car.name"/>
-        <p class="red">{{vm.errors.name}}</p>
+        <label for="car-brand">Car brand</label>
+        <input class="form-control" id="car-brand" ng-model="vm.car.brand" />
+        <p class="red">{{vm.errors.brand}}</p>
     </div>
     <div class="form-group">
-        <label for="price">Car Price</label>
-        <input id="price" class="form-control"
+        <label for="car-model">Car model</label>
+        <input class="form-control" id="car-model" ng-model="vm.car.model" />
+        <p class="red">{{vm.errors.model}}</p>
+    </div>
+    <div class="form-group">
+        <label for="car-price">Car Price</label>
+        <input class="form-control" id="car-price"
                ng-model="vm.car.price" type="number" step="0.01"/>
         <p class="red">{{vm.errors.price}}</p>
     </div>
