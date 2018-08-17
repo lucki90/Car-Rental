@@ -1,5 +1,5 @@
 angular.module('car-edit')
-    .controller('CarEditController', function(car, carService, $location) {
+    .controller('carEditController', function(car, carService, $location) {
         var vm = this;
 
         vm.car = car;
