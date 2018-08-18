@@ -3,10 +3,10 @@ angular.module('car')
         var service = this;
 
         var carResource = $resource('http://localhost:8080/cars/:carId', {}, {
-            query: {
-                method: 'GET',
-                isArray: false
-            },
+            // query: {
+            //     method: 'GET',
+            //     isArray: false
+            // },
             update: {
                 method: 'PUT'
             }
