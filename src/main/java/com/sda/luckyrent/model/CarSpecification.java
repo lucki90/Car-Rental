@@ -32,12 +32,27 @@ public class CarSpecification {
     @Column(nullable = false)
     private Double engineCapacity;
 
-//    @OneToMany(mappedBy = "carSpecification")
-//    private List<Car> cars;
-
-    //Dzięki tej addnotacji nie pojawia się rekurencja i stackOverFlow przy pobieraniu obiektu
-//    @JsonIgnore
-//    public List<Car> getCars() {
-//        return cars;
-//    }
+    public void updateFrom(CarSpecification carSpecification) {
+        if (carSpecification.getBodyType() != null) {
+            this.bodyType = carSpecification.getBodyType();
+        }
+        if (carSpecification.getProductionYear() != null) {
+            this.productionYear = carSpecification.getProductionYear();
+        }
+        if (carSpecification.getColour() != null) {
+            this.colour = carSpecification.getColour();
+        }
+        if (carSpecification.getColour() != null) {
+            this.colour = carSpecification.getColour();
+        }
+        if (carSpecification.getSeats() != null) {
+            this.seats = carSpecification.getSeats();
+        }
+        if (carSpecification.getHp() != null) {
+            this.hp = carSpecification.getHp();
+        }
+        if (carSpecification.getEngineCapacity() != null) {
+            this.engineCapacity = carSpecification.getEngineCapacity();
+        }
+    }
 }

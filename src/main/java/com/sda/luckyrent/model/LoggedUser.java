@@ -27,4 +27,16 @@ public class LoggedUser {
     @JoinColumn(name = "id_user")
     private User user;
 
+    public void updateFrom(LoggedUser dbLoggedUser) {
+        if (dbLoggedUser.getLogin() != null) {
+            this.login=dbLoggedUser.getLogin();
+        }
+        if (dbLoggedUser.getMail() != null) {
+            this.mail=dbLoggedUser.getMail();
+        }
+        if (dbLoggedUser.getPassword() != null) {
+            this.password=dbLoggedUser.getPassword();
+        }
+
+    }
 }

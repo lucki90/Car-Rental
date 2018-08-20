@@ -21,6 +21,14 @@ public class CarClass {
     @Column(nullable = false)
     private String segmentDescription;
 
+    public void updateFrom(CarClass carClass) {
+        if (carClass.getSegment() != null) {
+            this.segment = carClass.getSegment();
+        }
+        if (carClass.getSegmentDescription() != null) {
+            this.segmentDescription = carClass.getSegmentDescription();
+        }
+    }
 
 //    @OneToMany(mappedBy = "carClass")
 //    private List<Car> cars;
