@@ -30,10 +30,11 @@ carListModule.controller('carListController', function (carService, $location) {
 
     search();
 
+
     function search() {
         carService.search(vm.params)
             .then(function (response) {
-                vm.cars = response.content;
+                vm.cars = response;
             })
             .catch(function (response) {
                 alert(response.data.message);
