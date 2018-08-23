@@ -1,7 +1,9 @@
 package com.sda.luckyrent.controller;
 
 import com.sda.luckyrent.exception.BindingResultException;
+import com.sda.luckyrent.exception.IllegalActionException;
 import com.sda.luckyrent.exception.NotFoundException;
+import com.sda.luckyrent.exception.UnavailableException;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -21,6 +23,20 @@ public class ControllerExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     public ExceptionMessage handleNotFoundException(NotFoundException e){
+        return new ExceptionMessage(e.getMessage());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseBody
+    public ExceptionMessage handleUnavailableException(UnavailableException e){
+        return new ExceptionMessage(e.getMessage());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseBody
+    public ExceptionMessage handleIllegalActionException(IllegalActionException e){
         return new ExceptionMessage(e.getMessage());
     }
 
