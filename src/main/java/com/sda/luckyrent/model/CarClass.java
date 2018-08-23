@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "car_class")
@@ -16,9 +16,13 @@ public class CarClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false)
+
+    @NotBlank
+    @Column(unique = true)
     private String segment;
-    @Column(nullable = false)
+
+    @NotBlank
+    @Column
     private String segmentDescription;
 
     public void updateFrom(CarClass carClass) {
@@ -29,8 +33,4 @@ public class CarClass {
             this.segmentDescription = carClass.getSegmentDescription();
         }
     }
-
-//    @OneToMany(mappedBy = "carClass")
-//    private List<Car> cars;
-
 }

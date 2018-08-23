@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,17 +21,25 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "reserved_from", nullable = false)
+
+    @NotNull
+    @FutureOrPresent
+    @Column(name = "reserved_from")
     private LocalDateTime fromDate;
-    @Column(name = "reserved_to", nullable = false)
+
+    @NotNull
+    @Future
+    @Column(name = "reserved_to")
     private LocalDateTime toDate;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_car", nullable = false)
+    @JoinColumn(name = "id_car")
     private Car car;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false)
+    @JoinColumn(name = "id_user")
     private User user;
 
     public void updateForm(Reservation reservation) {
@@ -43,7 +55,23 @@ public class Reservation {
         if (reservation.getUser() != null){
             this.user = reservation.getUser();
         }
+    }
+    public void updateIfNull(Reservation reservation){
+        if (this.getId()==null){
+            this.id = reservation.getId();
+        }
+        if (this.getFromDate() == null) {
+            this.fromDate = reservation.getFromDate();
+        }
+        if (this.getToDate() == null){
+            this.toDate = reservation.getToDate();
+        }
+        if (this.getCar() == null){
+            this.car = reservation.getCar();
+        }
+        if (this.getUser() == null){
+            this.user = reservation.getUser();
+        }
 
     }
-
 }

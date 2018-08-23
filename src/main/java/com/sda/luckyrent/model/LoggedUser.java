@@ -3,8 +3,12 @@ package com.sda.luckyrent.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "logged_user")
@@ -16,14 +20,23 @@ public class LoggedUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false,unique = true)
+
+    @NotBlank
+    @Column(unique = true)
     private String login;
-    @Column(nullable = false,unique = true)
+
+    @NotBlank
+    @Email
+    @Column(unique = true)
     private String mail;
-    @Column(nullable = false)
+
+    @NotBlank
+    @Length(min = 6)
+    @Column
     private String password;
 
     @OneToOne
+    @NotNull
     @JoinColumn(name = "id_user")
     private User user;
 

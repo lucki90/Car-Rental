@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Car")
@@ -16,17 +20,27 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "car_brand", nullable = false)
+
+    @NotBlank
+    @Column(name = "car_brand")
     private String brand;
-    @Column(name = "car_model", nullable = false)
+
+    @NotBlank
+    @Column(name = "car_model")
     private String model;
-    @Column(nullable = false)
+
+    @NotBlank
+    @Max(value = 10000)
+    @Min(value = 10)
+    @Column
     private Integer price;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_car_class")
     private CarClass carClass;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_car_specification")
     private CarSpecification carSpecification;

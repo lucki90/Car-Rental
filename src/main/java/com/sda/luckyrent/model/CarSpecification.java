@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,17 +20,32 @@ public class CarSpecification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
+    @NotBlank
+    @Column
     private String bodyType;
-    @Column(nullable = false)
+
+    @PastOrPresent
+    @NotNull
+    @Column
     private LocalDate productionYear;
-    @Column(nullable = false)
+
+    @NotBlank
+    @Column
     private String colour;
-    @Column(nullable = false)
+
+    @NotNull
+    @Max(value = 10)
+    @Min(value = 1)
+    @Column
     private Integer seats;
-    @Column(name = "horse_power", nullable = false)
+
+    @NotNull
+    @Column(name = "horse_power")
     private Integer hp;
-    @Column(nullable = false)
+
+    @NotNull
+    @Column
     private Double engineCapacity;
 
     public void updateFrom(CarSpecification carSpecification) {

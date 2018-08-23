@@ -1,4 +1,4 @@
-<form ng-submit="vm.create()">
+<form ng-submit="vm.create()" xmlns="http://www.w3.org/1999/html">
     <div class="form-group">
         <label for="car-brand">Car brand</label>
         <input class="form-control" id="car-brand" ng-model="vm.car.brand" />
@@ -15,6 +15,21 @@
                ng-model="vm.car.price" type="number" step="0.01"/>
         <p class="red">{{vm.errors.price}}</p>
     </div>
+
+
+    <div class="form-group">
+        <label for="car-class">Car Class</label>
+        <select class="form-control select2-element" id="car-class"
+               ng-model="vm.car-class"
+               ng-options="car-class as car-class.segment for car-class in vm.car-classes">
+        </select>
+        <script>
+            $(document).ready(function() {
+                $('.select2-element').select2();
+            });
+        </script>
+    </div>
+
     <button class="btn btn-primary" type="submit">Create</button>
     <!--<input class="btn btn-primary" content="Create"/>-->
 </form>

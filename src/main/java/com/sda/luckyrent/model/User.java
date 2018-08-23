@@ -3,8 +3,10 @@ package com.sda.luckyrent.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -17,15 +19,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private String surname;
-    @Column(nullable = false, unique = true)
-    private Integer phoneNumber;
 
-//    @OneToOne(mappedBy = "user")
-//    private LoggedUser loggedUser;
+    @NotBlank
+    @Column
+    private String name;
+
+    @NotBlank
+    @Column
+    private String surname;
+
+    @NotNull
+    @Column
+    private Integer phoneNumber;
 
     public void updateForm(User user) {
         if (user.getName() != null) {
