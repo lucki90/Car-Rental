@@ -29,7 +29,7 @@ public class Car {
     @Column(name = "car_model")
     private String model;
 
-    @NotBlank
+    @NotNull
     @Max(value = 10000)
     @Min(value = 10)
     @Column
