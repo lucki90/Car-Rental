@@ -1,1 +1,1 @@
-angular.module('car',['ngResource']);
+angular.module('car',['carSpecification','ngResource']);

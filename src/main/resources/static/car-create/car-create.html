@@ -1,35 +1,73 @@
 <form ng-submit="vm.create()" xmlns="http://www.w3.org/1999/html">
-    <div class="form-group">
-        <label for="car-brand">Car brand</label>
-        <input class="form-control" id="car-brand" ng-model="vm.car.brand" />
-        <p class="red">{{vm.errors.brand}}</p>
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label for="car-brand">Car brand</label>
+            <input class="form-control" id="car-brand" ng-model="vm.car.brand"/>
+            <p class="red">{{vm.errors.brand}}</p>
+        </div>
+        <div class="form-group">
+            <label for="car-model">Car model</label>
+            <input class="form-control" id="car-model" ng-model="vm.car.model"/>
+            <p class="red">{{vm.errors.model}}</p>
+        </div>
+        <div class="form-group">
+            <label for="car-price">Car Price</label>
+            <input class="form-control" id="car-price"
+                   ng-model="vm.car.price" type="number" step="1"/>
+            <p class="red">{{vm.errors.price}}</p>
+        </div>
+        <div class="form-group">
+            <label for="carSpecification-bodyType">Body type</label>
+            <input class="form-control" id="carSpecification-bodyType" ng-model="vm.carSpecification.bodyType"/>
+            <p class="red">{{vm.errors.bodyType}}</p>
+        </div>
+        <div class="form-group">
+            <label for="carSpecification-productionYear">Production year</label>
+            <input class="form-control" id="carSpecification-productionYear"
+                   ng-model="vm.carSpecification.productionYear"/>
+            <p class="red">{{vm.errors.productionYear}}</p>
+        </div>
+        <button class="btn btn-primary" type="submit">Create</button>
     </div>
-    <div class="form-group">
-        <label for="car-model">Car model</label>
-        <input class="form-control" id="car-model" ng-model="vm.car.model" />
-        <p class="red">{{vm.errors.model}}</p>
+    <div class="col-xs-4">
+        <div class="form-group">
+            <label for="carSpecification-colour">colour</label>
+            <input class="form-control" id="carSpecification-colour" ng-model="vm.carSpecification.colour"/>
+            <p class="red">{{vm.errors.colour}}</p>
+        </div>
+        <div class="form-group">
+            <label for="carSpecification-seats">seats</label>
+            <input class="form-control" id="carSpecification-seats"
+                   ng-model="vm.carSpecification.seats"/>
+            <p class="red">{{vm.errors.seats}}</p>
+        </div>
+        <div class="form-group">
+            <label for="carSpecification-engineCapacity">engineCapacity</label>
+            <input class="form-control" id="carSpecification-engineCapacity"
+                   ng-model="vm.carSpecification.engineCapacity"/>
+            <p class="red">{{vm.errors.engineCapacity}}</p>
+        </div>
+        <div class="form-group">
+            <label for="carSpecification-hp">hp</label>
+            <input class="form-control" id="carSpecification-hp"
+                   ng-model="vm.carSpecification.hp"/>
+            <p class="red">{{vm.errors.hp}}</p>
+        </div>
+        <div class="form-group">
+            <label for="carClass">Car Class</label>
+            <select class="form-control select2-element" id="carClass"
+                    ng-model="vm.car.carClass"
+                    ng-options="carClass as carClass.segment for carClass in vm.carClasses">
+            </select>
+            <script>
+                $(document).ready(function () {
+                    $('.select2-element').select2();
+                });
+            </script>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="car-price">Car Price</label>
-        <input class="form-control" id="car-price"
-               ng-model="vm.car.price" type="number" step="0.01"/>
-        <p class="red">{{vm.errors.price}}</p>
+    <div>
+
     </div>
 
-
-    <div class="form-group">
-        <label for="carClass">Car Class</label>
-        <select class="form-control select2-element" id="carClass"
-               ng-model="vm.carClass"
-               ng-options="carClass as carClass.segment for carClass in vm.carClasses">
-        </select>
-        <script>
-            $(document).ready(function() {
-                $('.select2-element').select2();
-            });
-        </script>
-    </div>
-
-    <button class="btn btn-primary" type="submit">Create</button>
-    <!--<input class="btn btn-primary" content="Create"/>-->
 </form>

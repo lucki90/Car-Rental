@@ -1,5 +1,5 @@
 angular.module('car')
-    .service('carService', function ($resource) {
+    .service('carService', function ($resource, carSpecificationService) {
         var service = this;
 
         var carResource = $resource('http://localhost:8080/cars/:carId', {}, {
@@ -16,8 +16,16 @@ angular.module('car')
             return carResource.query(params).$promise;
         };
 
-        service.create = function (car) {
-            return carResource.save({}, car).$promise;
+        service.create = function (car, addSpecification) {
+            if (addSpecification) {
+                return carSpecificationService.create(car.carSpecification)
+                    .then(function (carSpecification) {
+                        car.carSpecification = carSpecification;
+                        return carResource.save({}, car).$promise;
+                    });
+            } else {
+                return carResource.save({}, car).$promise;
+            }
         };
 
         service.remove = function (id) {

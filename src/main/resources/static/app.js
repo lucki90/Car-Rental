@@ -4,5 +4,9 @@ var app = angular.module('app', [
     'car-edit',
     'carClass-list',
     'carClass-create',
-    'carClass-edit'
+    'carClass-edit',
+    'carSpecification-list',
+    'carSpecification-create',
+    'carSpecification-edit'
+
 ]);

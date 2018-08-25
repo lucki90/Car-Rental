@@ -4,6 +4,8 @@ angular.module('car-create')
 
         vm.car = {};
 
+        vm.carSpecification = {};
+
         vm.create = create;
 
         vm.carClasses = carClasses;
@@ -15,7 +17,8 @@ angular.module('car-create')
 //         );
 
         function create() {
-            carService.create(vm.car)
+            vm.car.carSpecification = vm.carSpecification;
+            carService.create(vm.car, true)
                 .then(function () {
                     $location.path('/cars');
                 })
