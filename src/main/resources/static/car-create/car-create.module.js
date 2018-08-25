@@ -1,1 +1,1 @@
-angular.module('car-create',['car','ngRoute']);
+angular.module('car-create',['car','ngRoute', 'carClass']);

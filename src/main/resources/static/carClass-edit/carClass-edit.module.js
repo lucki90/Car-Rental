@@ -1,0 +1,1 @@
+angular.module('carClass-edit', ['carClass', 'ngRoute']);

@@ -1,0 +1,15 @@
+<form ng-submit="vm.create()" xmlns="http://www.w3.org/1999/html">
+    <div class="form-group">
+        <label for="carClass-segment">CarClass segment</label>
+        <input class="form-control" id="carClass-segment" ng-model="vm.carClass.segment" />
+        <p class="red">{{vm.errors.segment}}</p>
+    </div>
+    <div class="form-group">
+        <label for="carClass-segmentDescription">CarClass segmentDescription</label>
+        <input class="form-control" id="carClass-segmentDescription" ng-model="vm.carClass.segmentDescription" />
+        <p class="red">{{vm.errors.segmentDescription}}</p>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Create</button>
+    <!--<input class="btn btn-primary" content="Create"/>-->
+</form>

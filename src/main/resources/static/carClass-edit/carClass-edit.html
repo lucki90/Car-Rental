@@ -1,0 +1,13 @@
+<form ng-submit="vm.update()">
+    <div class="form-group">
+        <label for="carClass-segment">carClass segment</label>
+        <input class="form-control" id="carClass-segment" ng-model="vm.carClass.segment" />
+        <p class="red">{{vm.errors.segment}}</p>
+    </div>
+    <div class="form-group">
+        <label for="carClass-segmentDescription">carClass segmentDescription</label>
+        <input class="form-control" id="carClass-segmentDescription" ng-model="vm.carClass.segmentDescription" />
+        <p class="red">{{vm.errors.segmentDescription}}</p>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+</form>

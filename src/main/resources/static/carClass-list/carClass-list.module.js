@@ -1,0 +1,1 @@
+angular.module('carClass-list',['ngRoute','carClass']);

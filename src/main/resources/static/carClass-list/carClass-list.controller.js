@@ -1,6 +1,6 @@
-var carListModule = angular.module('car-list');
+var carClassListModule = angular.module('carClass-list');
 
-carListModule.controller('carListController', function (carService, $location) {
+carClassListModule.controller('carClassListController', function (carClassService, $location) {
     var vm = this;
 
     vm.sortOption = [
@@ -30,10 +30,11 @@ carListModule.controller('carListController', function (carService, $location) {
 
     search();
 
+
     function search() {
-        carService.search(vm.params)
+        carClassService.search(vm.params)
             .then(function (response) {
-                vm.cars = response;
+                vm.carClasses = response;
             })
             .catch(function (response) {
                 alert(response.data.message);
@@ -41,14 +42,14 @@ carListModule.controller('carListController', function (carService, $location) {
             });
     }
 
-    function remove(carId) {
-        carService.remove(carId)
+    function remove(carClassId) {
+        carClassService.remove(carClassId)
             .then(function () {
                 search();
             });
     }
 
     function edit(id) {
-        $location.path('/cars/edit/' + id);
+        $location.path('/car-classes/edit/' + id);
     }
 });
