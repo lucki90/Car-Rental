@@ -1,0 +1,35 @@
+<form ng-submit="vm.create()" xmlns="http://www.w3.org/1999/html">
+    <div class="form-group">
+        <label for="carSpecification-bodyType">carSpecification bodyType</label>
+        <input class="form-control" id="carSpecification-bodyType"
+               ng-model="vm.carSpecification.bodyType" />
+        <p class="red">{{vm.errors.bodyType}}</p>
+    </div>
+    <div class="form-group">
+        <label for="carSpecification-productionYear">carSpecification productionYear</label>
+        <input class="form-control" id="carSpecification-productionYear"
+               ng-model="vm.carSpecification.productionYear" />
+        <p class="red">{{vm.errors.productionYear}}</p>
+    </div>
+    <div class="form-group">
+        <label for="carSpecification-seats">carSpecification seats</label>
+        <input class="form-control" id="carSpecification-seats"
+               ng-model="vm.carSpecification.seats" />
+        <p class="red">{{vm.errors.seats}}</p>
+    </div>
+    <div class="form-group">
+        <label for="carSpecification-hp">carSpecification hp</label>
+        <input class="form-control" id="carSpecification-hp"
+               ng-model="vm.carSpecification.hp" />
+        <p class="red">{{vm.errors.hp}}</p>
+    </div>
+    <div class="form-group">
+        <label for="carSpecification-engineCapacity">carSpecification engineCapacity</label>
+        <input class="form-control" id="carSpecification-engineCapacity"
+               ng-model="vm.carSpecification.engineCapacity" />
+        <p class="red">{{vm.errors.engineCapacity}}</p>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Create</button>
+    <!--<input class="btn btn-primary" content="Create"/>-->
+</form>

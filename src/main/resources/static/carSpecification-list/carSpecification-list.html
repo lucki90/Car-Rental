@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>bodyType</td>
+        <td>productionYear</td>
+        <td>colour</td>
+        <td>seats</td>
+        <td>hp</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="carSpecification in vm.carSpecifications">
+        <td>{{carSpecification.bodyType}}</td>
+        <td>{{carSpecification.productionYear}}</td>
+        <td>{{carSpecification.colour}}</td>
+        <td>{{carSpecification.seats}}</td>
+        <td>{{carSpecification.hp}}</td>
+        <td>
+            <button class="btn btn-danger" ng-click="vm.remove(carSpecification.id)">Delete</button>
+            <button class="btn btn-success" ng-click="vm.edit(carSpecification.id)">Edit</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p>{{vm.error}}</p>
