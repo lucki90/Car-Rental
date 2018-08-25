@@ -43,12 +43,12 @@ public class LoggedUserService {
     public LoggedUser update(Long id, LoggedUser loggedUser, BindingResult bindingResult){
         LoggedUser dbLoggedUser = getById(id);
         loggedUser.setId(id);
-        validateCar(bindingResult);
+        validateUser(bindingResult);
         dbLoggedUser.updateFrom(dbLoggedUser);
         return loggedUserRepository.save(dbLoggedUser);
     }
 
-    private void validateCar(BindingResult bindingResult) {
+    private void validateUser(BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new BindingResultException(bindingResult);
         }

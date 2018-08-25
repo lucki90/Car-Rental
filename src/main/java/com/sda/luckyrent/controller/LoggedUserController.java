@@ -26,8 +26,7 @@ public class LoggedUserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<LoggedUser> search(
-            @RequestParam(value = "login", required = false, defaultValue = "") String login
-    ){
+            @RequestParam(value = "login", required = false, defaultValue = "") String login){
       return loggedUserService.search(login);
     }
 
