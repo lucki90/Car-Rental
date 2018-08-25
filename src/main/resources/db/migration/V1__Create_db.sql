@@ -7,8 +7,8 @@ CREATE TABLE `car` (
   `car_brand` varchar(255) NOT NULL,
   `car_model` varchar(255) NOT NULL,
   `price` int(11) NOT NULL,
-  `id_car_class` bigint(20) DEFAULT NULL,
-  `id_car_specification` bigint(20) DEFAULT NULL,
+  `id_car_class` bigint(20) NOT NULL,
+  `id_car_specification` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK3xr3f4rmrdshd645wfb87v9iq` (`id_car_class`),
   KEY `FKj8yjmum0h6pooxcv2cn22b8sw` (`id_car_specification`)
